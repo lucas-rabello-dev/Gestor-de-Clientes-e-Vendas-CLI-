@@ -1,0 +1,94 @@
+Gestor de clientes (CLI)
+
+Entidades 
+cliente -> nome, email(verificação de email válido), telefone(verificar se válido)
+produto -> nome, valor
+Venda -> produto, cliente, data, quantidade
+
+Relacionamentos:
+cliente tem muitas vendas
+produto aparece em muitas vendas
+gerar total da venda filtrar vendas por cliente/data
+
+🔧 Ensina:
+
+Relacionamento 1:N e N:M
+
+Relatórios (total vendido por cliente, etc.)
+
+Filtros no banco
+
+
+
+Arquitetura de camadas ---------------------------
+
+/gestor-vendas-cli/
+│
+├── main.go
+├── database/
+│   └── db.go
+├── models/
+│   ├── cliente.go
+│   ├── produto.go
+│   └── venda.go
+├── repository/ -> acesso a banco de dados
+│   ├── cliente_repository.go
+│   ├── produto_repository.go
+│   └── venda_repository.go
+├── services/ -> Executar validações, regras, cálculos, verificações
+│   └── venda_service.go
+├── controllers/ -> interação com o usuário
+│   └── menu_controller.go
+└── go.mod
+
+
+
+📐 Etapa 1: Modelagem de Domínio (Conceito)
+Vamos desenhar primeiro o que é o mundo desse sistema:
+
+🧾 Entidades principais:
+Cliente: representa o comprador
+
+Produto: item que será vendido
+
+Venda: uma transação que liga o cliente aos produtos
+
+🔄 Relacionamentos
+1️⃣ Cliente 1:N Venda
+Um cliente pode ter várias vendas
+
+Cada venda pertence a um único cliente
+
+2️⃣ Venda N:M Produto
+Uma venda pode ter vários produtos
+
+Um produto pode estar em várias vendas
+
+Essa relação é feita via uma tabela intermediária, chamada ItemVenda ou VendaProduto, que guarda inclusive:
+
+quantidade
+
+subtotal por produto
+
+
+Etapa	O que escrever	Pasta
+1	Models e relacionamentos	models/
+2	Conexão com DB + migration	database/
+3	CRUD básico	repository/
+4	Regras de negócio	services/
+5	Entrada e saída do CLI	controllers/
+6	Função principal	main.go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
