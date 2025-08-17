@@ -1,8 +1,8 @@
 Gestor de clientes (CLI)
 
 Entidades 
-cliente -> nome, email(verificação de email válido), telefone(verificar se válido)
-produto -> nome, valor
+cliente -> nome, email(verificação de email válido), telefone(verificar se válido), ID
+produto -> nome, valor, ID
 Venda -> produto, cliente, data, quantidade
 
 Relacionamentos:
